@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feedback Form</title>
+    <link rel="stylesheet" href="feedback.css" />
+  </head>
+  <body>
+    <form id="feedbackForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="feedbackType">Feedback Type:</label>
+      <select id="feedbackType" name="feedbackType" required>
+        <option value="compliment">Compliment</option>
+        <option value="suggestion">Suggestion</option>
+        <option value="complaint">Complaint</option>
+      </select>
+
+      <label for="comments">Comments:</label>
+      <textarea id="comments" name="comments" rows="4" required></textarea>
+
+      <button type="button" onclick="submitForm()">Submit Feedback</button>
+    </form>
+
+    <script src="feedbackscript.js"></script>
+  </body>
+</html>

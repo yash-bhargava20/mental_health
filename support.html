@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Community Support</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #28dcf0;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #0e1112;
+        text-align: center;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .post {
+        margin-bottom: 30px;
+        padding: 20px;
+        border-radius: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .post h2 {
+        color: black;
+        margin-top: 0;
+        margin-bottom: 15px;
+      }
+
+      .post p {
+        color: #555;
+        margin-bottom: 15px;
+      }
+
+      .comment {
+        margin-left: 30px;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #f0f0f0;
+        margin-top: 15px;
+      }
+
+      .comment p {
+        color: #555;
+        margin-top: 0;
+        margin-bottom: 5px;
+      }
+
+      .comment-input {
+        margin-top: 15px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #0077cc;
+        background-color: #ffffff;
+        color: #333;
+        width: calc(100% - 120px);
+      }
+
+      .comment-input:focus {
+        outline: none;
+        border-color: #12bccc;
+      }
+
+      .comment-button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 10px;
+        background-color: #34bfce;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .comment-button:hover {
+        background-color: #1e64ce;
+      }
+
+      .comment-button:active {
+        background-color: #004c80;
+      }
+      .nav {
+        display: flex;
+        background-color: white;
+        height: 70px;
+        padding-left: 40px;
+        padding-top: 8px;
+      }
+      img {
+        cursor: pointer;
+      }
+      a {
+        text-decoration: none;
+        color: rgb(54, 223, 223);
+        font-size: 20px;
+        font-weight: 500;
+        margin-left: 30px;
+        margin-top: 10px;
+      }
+      a:hover {
+        text-decoration: none;
+        color: rgb(102, 172, 172);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <img src="logo.jpg" height="55px" width="170px" />
+      <a href="index.html">Home</a>
+    </div>
+    <div class="container">
+      <h1>Community Support</h1>
+
+      <div id="posts"></div>
+
+      <div id="post-form">
+        <h2>Create a New Post</h2>
+        <input
+          type="text"
+          id="post-title"
+          class="comment-input"
+          placeholder="Enter title"
+        />
+        <textarea
+          id="post-content"
+          class="comment-input"
+          placeholder="Enter content"
+        ></textarea>
+        <button onclick="createPost()" class="comment-button">Post</button>
+      </div>
+    </div>
+
+    <script>
+      let posts = [
+        {
+          title: "Feeling anxious",
+          content:
+            "I've been feeling really anxious lately. Any tips for managing anxiety?",
+          comments: [],
+        },
+        {
+          title: "Need motivation",
+          content:
+            "Struggling to find motivation to get out of bed in the morning. Any advice?",
+          comments: [],
+        },
+      ];
+
+      function displayPosts() {
+        const postsContainer = document.getElementById("posts");
+        postsContainer.innerHTML = "";
+        posts.forEach((post, index) => {
+          const postElement = document.createElement("div");
+          postElement.classList.add("post");
+          postElement.innerHTML = `
+          <h2>${post.title}</h2>
+          <p>${post.content}</p>
+          <button onclick="toggleComments(${index})" class="comment-button">Show Comments</button>
+          <div id="comments-${index}" style="display: none;"></div>
+          <input type="text" id="comment-input-${index}" class="comment-input" placeholder="Add a comment">
+          <button onclick="addComment(${index})" class="comment-button">Add Comment</button>
+          <hr>
+        `;
+
+          const commentsContainer = postElement.querySelector(
+            `#comments-${index}`
+          );
+          post.comments.forEach((comment) => {
+            const commentElement = document.createElement("div");
+            commentElement.classList.add("comment");
+            commentElement.textContent = comment;
+            commentsContainer.appendChild(commentElement);
+          });
+
+          postsContainer.appendChild(postElement);
+        });
+      }
+
+      function toggleComments(postIndex) {
+        const commentsContainer = document.getElementById(
+          `comments-${postIndex}`
+        );
+        if (commentsContainer.style.display === "none") {
+          commentsContainer.style.display = "block";
+        } else {
+          commentsContainer.style.display = "none";
+        }
+      }
+
+      function addComment(postIndex) {
+        const inputElement = document.getElementById(
+          `comment-input-${postIndex}`
+        );
+        const comment = inputElement.value.trim();
+        if (comment) {
+          posts[postIndex].comments.push(comment);
+          displayPosts();
+          inputElement.value = "";
+        } else {
+          alert("Please enter a comment.");
+        }
+      }
+
+      function createPost() {
+        const title = document.getElementById("post-title").value;
+        const content = document.getElementById("post-content").value;
+        if (title && content) {
+          posts.push({ title, content, comments: [] });
+          displayPosts();
+          document.getElementById("post-title").value = "";
+          document.getElementById("post-content").value = "";
+        } else {
+          alert("Please enter a title and content for your post.");
+        }
+      }
+
+      displayPosts();
+    </script>
+  </body>
+</html>

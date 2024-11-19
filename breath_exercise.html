@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Breathing Exercises</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to right, #1657a1, #50a9bf);
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      #breath {
+        margin: 130px 370px;
+        text-align: center;
+        max-width: 600px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      #instructions {
+        margin-bottom: 20px;
+        font-size: 18px;
+        display: none;
+      }
+
+      #startButton {
+        background-color: #272c27;
+        margin: auto;
+        color: white;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 18px;
+      }
+
+      #startButton:hover {
+        background-color: #438e94;
+      }
+
+      #positiveWords {
+        margin-top: 20px;
+        font-size: 20px;
+        color: #007bff;
+        display: none;
+      }
+
+      #clock {
+        margin: 20px auto;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: #35d2fd;
+        border: 10px solid #2da5fb;
+        box-sizing: border-box;
+        line-height: 200px;
+        font-size: 36px;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+      .nav {
+        display: flex;
+        background-color: white;
+        height: 70px;
+        padding-left: 40px;
+        padding-top: 8px;
+      }
+      img {
+        cursor: pointer;
+      }
+      a {
+        text-decoration: none;
+        color: rgb(54, 223, 223);
+        font-size: 20px;
+        font-weight: 500;
+        margin-left: 30px;
+        margin-top: 10px;
+      }
+      a:hover {
+        text-decoration: none;
+        color: rgb(102, 172, 172);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <img src="logo.jpg" height="55px" width="170px" />
+      <a href="index.html">Home</a>
+    </div>
+    <div id="breath">
+      <div id="instructions">
+        <p><strong>Breathing Exercise:</strong></p>
+        <p id="step"></p>
+      </div>
+      <div id="clock">0</div>
+      <button id="startButton" onclick="startBreathing()">
+        Start Breathing
+      </button>
+      <div id="positiveWords"></div>
+    </div>
+    <script>
+      function startBreathing() {
+        var steps = [
+          {
+            text: "Breathe in deeply through your nose for 4 seconds.",
+            duration: 4,
+          },
+          { text: "Hold your breath for 7 seconds.", duration: 7 },
+          {
+            text: "Exhale slowly through your mouth for 8 seconds.",
+            duration: 8,
+          },
+        ];
+        var totalCycles = 3; // Number of breathing cycles
+        var currentCycle = 0;
+        var currentStep = 0;
+        document.getElementById("startButton").style.display = "none"; // Hide the button
+        document.getElementById("clock").style.display = "block"; // Show the clock
+        executeStep(currentStep);
+
+        function executeStep(step) {
+          document.getElementById("instructions").style.display = "block";
+          document.getElementById("step").innerText = steps[step].text;
+
+          var seconds = steps[step].duration;
+          var timer = setInterval(function () {
+            document.getElementById("clock").innerText = seconds;
+            seconds--;
+
+            if (seconds < 0) {
+              clearInterval(timer);
+              if (step + 1 < steps.length) {
+                executeStep(step + 1);
+              } else {
+                currentCycle++;
+                if (currentCycle < totalCycles) {
+                  document.getElementById("instructions").style.display =
+                    "none";
+                  document.getElementById("positiveWords").innerText =
+                    "You've completed one cycle! Ready to do it again?";
+                  document.getElementById("positiveWords").style.display =
+                    "block";
+                  document.getElementById("startButton").style.display =
+                    "block";
+                } else {
+                  document.getElementById("instructions").style.display =
+                    "none";
+                  document.getElementById("positiveWords").innerText =
+                    "You've completed all cycles! Great job! Ready to do it again?";
+                  document.getElementById("positiveWords").style.display =
+                    "block";
+                  document.getElementById("startButton").style.display =
+                    "block";
+                }
+              }
+            }
+          }, 1000);
+        }
+      }
+    </script>
+  </body>
+</html>

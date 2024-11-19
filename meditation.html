@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-image: url(medi.jpg);
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .container {
+        margin: 100px 370px;
+        width: 90%;
+        max-width: 600px;
+        background-color: rgb(232, 254, 255, 0.5);
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 4px 8px solid black;
+        animation: slideInUp 1s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1,
+      h2,
+      h3 {
+        color: black;
+        margin: 0 0 15px 0;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 0;
+      }
+
+      button {
+        padding: 20px 20px;
+        margin: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        background-color: #57dade;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      button:hover {
+        background-color: #ee964b;
+      }
+
+      #timer {
+        margin-top: 30px;
+      }
+
+      #instructions {
+        text-align: center;
+        margin-top: 20px;
+      }
+      h2 {
+        text-align: center;
+      }
+      p {
+        text-align: center;
+        color: #555;
+        line-height: 1.6;
+      }
+
+      #session-instructions {
+        margin-top: 10px;
+      }
+
+      @keyframes slideInUp {
+        from {
+          transform: translateY(50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .nav {
+        display: flex;
+        background-color: white;
+        height: 70px;
+        padding-left: 40px;
+        padding-top: 8px;
+      }
+      img {
+        cursor: pointer;
+      }
+      a {
+        text-decoration: none;
+        color: rgb(54, 223, 223);
+        font-size: 20px;
+        font-weight: 500;
+        margin-left: 30px;
+        margin-top: 10px;
+      }
+      a:hover {
+        text-decoration: none;
+        color: rgb(102, 172, 172);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <img src="logo.jpg" height="55px" width="170px" />
+      <a href="index.html">Home</a>
+    </div>
+    <div class="container">
+      <h1>Guided Meditation</h1>
+      <div id="meditation-list">
+        <h2>Choose a Meditation Session:</h2>
+        <ul id="sessions">
+          <li>
+            <button onclick="startMeditation(10)">
+              Body Scan Meditation (10 minutes)
+            </button>
+          </li>
+          <li>
+            <button onclick="startMeditation(15)">
+              Mindfulness Meditation (15 minutes)
+            </button>
+          </li>
+          <li>
+            <button onclick="startMeditation(20)">
+              Loving-Kindness Meditation (20 minutes)
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div id="timer" style="display: none">
+        <h2>Session in Progress:</h2>
+        <p id="session-title"></p>
+        <p id="countdown"></p>
+        <div id="instructions">
+          <h3>Instructions:</h3>
+          <p id="session-instructions"></p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function startMeditation(duration) {
+        var sessionTitle = document
+          .getElementById("sessions")
+          .getElementsByTagName("button")[duration / 5 - 2].textContent;
+        var sessionInstructions = getInstructions(sessionTitle);
+        document.getElementById("meditation-list").style.display = "none";
+        document.getElementById("timer").style.display = "block";
+        document.getElementById("session-title").textContent = sessionTitle;
+        document.getElementById("session-instructions").textContent =
+          sessionInstructions;
+        speakInstructions(sessionInstructions);
+
+        var timerElement = document.getElementById("countdown");
+        var minutes = duration;
+        var seconds = 0;
+
+        var countdown = setInterval(function () {
+          timerElement.textContent =
+            minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s ";
+          if (minutes == 0 && seconds == 0) {
+            clearInterval(countdown);
+            timerElement.textContent =
+              "Session ended. Take a moment to reflect.";
+          } else if (seconds == 0) {
+            minutes--;
+            seconds = 59;
+          } else {
+            seconds--;
+          }
+        }, 1000);
+      }
+
+      function getInstructions(sessionTitle) {
+        switch (sessionTitle) {
+          case "Body Scan Meditation (10 minutes)":
+            return "Find a comfortable seated or lying position. Close your eyes and focus your attention on each part of your body, starting from your toes and moving up to your head. Notice any sensations or tension, and consciously relax each part as you scan through your body.";
+          case "Mindfulness Meditation (15 minutes)":
+            return "Sit comfortably with your spine upright and your feet flat on the floor. Close your eyes and bring your attention to your breath. Notice the sensation of each inhale and exhale, without trying to change or control your breath. Whenever your mind wanders, gently bring it back to your breath.";
+          case "Loving-Kindness Meditation (20 minutes)":
+            return "Sit comfortably with your eyes closed. Begin by offering loving-kindness to yourself, silently repeating phrases such as 'May I be happy, may I be healthy, may I be safe, may I live with ease.' Then, extend these wishes to others, starting with loved ones and gradually expanding to include all beings.";
+          default:
+            return "";
+        }
+      }
+
+      function speakInstructions(instructions) {
+        var synth = window.speechSynthesis;
+        var utterance = new SpeechSynthesisUtterance(instructions);
+        synth.speak(utterance);
+      }
+    </script>
+  </body>
+</html>

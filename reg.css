@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body {
+    font-family: "Poppins";
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.form-box-reg {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 500px;
+}
+
+.form-box-reg h2 {
+    color: #333;
+}
+
+.input-box {
+    margin-bottom: 15px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.input-box i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+    color: #888;
+}
+
+.remember {
+    margin-bottom: 15px;
+    color: #888;
+}
+
+.remember input {
+    margin-right: 5px;
+}
+
+button {
+    background-color:rgb(105, 128, 58);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register {
+    margin-top: 15px;
+    color: #888;
+}
+
+.login-link {
+    color: rgb(146, 175, 88);
+    text-decoration: none;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}

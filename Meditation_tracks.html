@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meditation Tracks</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <style>
+
+            @import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
+          
+        .track-card {
+            margin-bottom: 20px;
+
+        }
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Protest Riot', sans-serif;
+        }
+        .nav{
+            display: flex ;
+            background-color: white;
+            height:70px ;
+            padding-left: 40px;
+            padding-top: 8px ;
+         }
+         img{
+          cursor: pointer;
+         }
+        a{
+            text-decoration: none ;
+            color: rgb(54, 223, 223);
+            font-size: 20px;
+            font-weight: 500;
+            margin-left: 30px;
+            margin-top: 10px;
+        }
+        a:hover{
+            text-decoration: none;
+            color: rgb(102, 172, 172);
+        }
+
+        .container {
+            background-color:rgb(117, 200, 200);
+            border-radius: 10px ;
+            padding: 20px ;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: rgb(3, 3, 3) ;
+        }
+
+        .track-card {
+            margin-bottom: 20px;
+        
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.10);
+        }
+        .card-body {
+            text-align: center;
+            background-color: #c5d6d4;
+            border-radius: 10px ;
+            
+        }
+
+        .card-title {
+            color: #099688;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            color: #8fbbc7;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <img src="logo.png" height="55px" width="170px">
+        <a href="index.html">Home</a>
+   </div>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Meditation Tracks</h1>
+
+        <div id="tracks-container" class="row">
+            
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const meditationTracks = [
+                { title: "Track 1", url: "Track1.mp3", d:"Living my dreams" },
+                { title: "Track 2", url: "Track2.mp3", d:"Into the memories" },
+                { title: "Track 3", url: "Track3.mp3", d:"Deep forest" },
+                { title: "Track 4", url: "Track4.mp3", d:"Fresh air"},
+                { title: "Track 5", url: "Track5.mp3", d:"Love yourself" },
+                { title: "Track 6", url: "Track6.mp3", d:"Healing-mind" },
+                { title: "Track 7", url: "Track7.mp3", d:"Enjoying past" },
+                { title: "Track 8", url: "Track8.mp3", d:"A moment of joy" },
+                { title: "Track 9", url: "Track9.mp3", d:"Living the moment" },
+                { title: "Track 10", url: "Track10.mp3", d:"Pure mind" },
+                { title: "Track 11", url: "Track11.mp3", d:"A deal with positivity" },
+                { title: "Track 12", url: "Track12.mp3", d:"Removing darkness" },
+            ];
+            function createTrackCard(track) {
+                const trackCard = document.createElement("div");
+                trackCard.classList.add("col-md-4", "track-card");
+
+                trackCard.innerHTML = `
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">${track.title}</h5>
+                             <p>${track.d} </p>
+                            <audio controls>
+                                <source src="${track.url}" type="audio/mp3">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                `;
+
+                return trackCard;
+            }
+
+            function renderMeditationTracks() {
+                const tracksContainer = document.getElementById("tracks-container");
+
+                meditationTracks.forEach(track => {
+                    const trackCard = createTrackCard(track);
+                    tracksContainer.appendChild(trackCard);
+                });
+            }
+
+        
+            renderMeditationTracks();
+        });
+        
+    </script>
+</body>
+
+</html>

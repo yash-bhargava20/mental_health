@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins";
+}
+
+
+header {
+  position: fixed;
+  width: 100%;
+  padding: 20px 50px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+ 
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black ;
+ 
+
+}
+
+.nav-links a {
+  position: relative;
+  color: black ;
+  font-size: 1.5rem;
+  margin-right: 30px;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.nav-links a::after {
+  content: "";
+  height: 2px;
+  width: 100%;
+  background-color: #000;
+  position: absolute;
+  bottom: -2px;
+  transition: 0.3s;
+  transition-timing-function: ease-in-out;
+  transform: scaleX(0);
+  left: 0;
+}
+.nav-links a:hover::after {
+  transform: scaleX(1);
+}
+
+.landing-page {
+  display: flex;
+  justify-content: space-between;
+  
+  
+
+}
+.landing-content {
+  font-size: 2rem;
+  padding: 5rem;
+  margin-top: 50px;
+
+}
+.landing-img{
+  padding: 5rem;
+  background: none;
+}
+.landing-page{
+  background-color: rgb(54, 223, 223);
+  color: #ffff;
+
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  margin: 3rem auto;
+}
+
+#login,
+#reg {
+  border: none;
+  cursor: pointer;
+  padding: 0.9rem 4rem;
+  border-radius: 4rem;
+  font-weight: 500;
+  display: inline-block;
+  border:1px solid  rgb(61, 156, 13);
+  color:green;
+}
+
+#login:hover{
+  background-color: rgb(61, 156, 13);
+  color:white;
+
+}
+#reg:hover{
+  background-color: rgb(61, 156, 13);
+  color:white;
+}
+main{
+  display: grid;
+  justify-content: center;
+  padding: 100px;
+  
+}
+.module{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap:10px;
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgb(175, 175, 175);
+  margin-bottom: 4rem;
+  padding: 2rem;
+
+}
+.title{
+  text-align: center;
+  font-size: 2.3rem;
+  color:  rgb(41, 106, 8);
+  font-weight: 600;
+}
+footer{
+  background-color: rgb(36, 36, 36);
+  min-height: 10vh;
+  color: #ffff;
+}
+
+

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Profiles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #4b6cb7, #182848); /* Gradient background */
+            color: #fff; /* Text color */
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        header {
+            background:linear-gradient(rgb(56, 154, 187),rgb(26, 180, 188));
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .therapist-profile {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            color: black;
+            margin-bottom: 20px;
+            width: 30%;
+            min-width: 250px;
+            animation: slideIn 0.5s ease-in-out; 
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .therapist-profile:hover {
+            background-color: #e9f0eb; /* Change background color on hover */
+            transform: scale(1.05);}
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .therapist-profile h2 {
+            margin-top: 0;
+            color: black;
+        }
+        .contact-info p {
+            margin: 5px 0;
+        }
+        button {
+            background-color: #429bbb;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background:linear-gradient(rgb(56, 154, 187),rgb(26, 180, 188));
+            color:black;
+             text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Therapist Profiles</h1>
+    </header>
+    <main>
+        <section class="therapist-profile">
+            <h2>Dr. John Doe</h2>
+            <p>Credentials: Ph.D. in Clinical Psychology</p>
+            <p>Specialties: Anxiety, Depression, PTSD</p>
+            <p>Experience: 10 years</p>
+            <p>Therapy Approach: Cognitive-Behavioral Therapy</p>
+            <p>Price: $100 per session</p> <!-- Price information added -->
+            <p>Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <div class="contact-info">
+                <p>Email: john.doe@example.com</p>
+                <p>Phone: 123-456-7890</p>
+            </div>
+            <button onclick="scheduleAppointment()">Schedule Appointment</button>
+        </section>
+        
+        <section class="therapist-profile">
+            <h2>Dr. Jane Smith</h2>
+            <p>Credentials: Psy.D. in Clinical Psychology</p>
+            <p>Specialties: Stress Management, Relationship Issues, LGBTQ+ Issues</p>
+            <p>Experience: 8 years</p>
+            <p>Therapy Approach: Psychodynamic Therapy</p>
+            <p>Price: $90 per session</p> <!-- Price information added -->
+            <p>Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <div class="contact-info">
+                <p>Email: jane.smith@example.com</p>
+                <p>Phone: 987-654-3210</p>
+            </div>
+            <button onclick="scheduleAppointment()">Schedule Appointment</button>
+        </section>
+        
+        <section class="therapist-profile">
+            <h2>Dr. David Brown</h2>
+            <p>Credentials: MD in Psychiatry</p>
+            <p>Specialties: Bipolar Disorder, Schizophrenia, Substance Abuse</p>
+            <p>Experience: 15 years</p>
+            <p>Therapy Approach: Medication Management, Cognitive-Behavioral Therapy</p>
+            <p>Price: $120 per session</p> <!-- Price information added -->
+            <p>Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <div class="contact-info">
+                <p>Email: david.brown@example.com</p>
+                <p>Phone: 555-123-4567</p>
+            </div><br>
+            <button onclick="scheduleAppointment()">Schedule Appointment</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Your Website Name</p>
+    </footer>
+    <script>
+        function scheduleAppointment() {
+            // Your appointment scheduling logic here
+            alert("Appointment scheduled successfully!");
+        }
+    </script>
+</body>
+</html>
